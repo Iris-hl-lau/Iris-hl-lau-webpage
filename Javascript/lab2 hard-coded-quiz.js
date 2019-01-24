@@ -8,7 +8,7 @@ let questions = [`<p>1. What is the output of the following?</p> <br/>
 <input type="radio" name="q1choice"> b) bob
 <br/>
 <input type="radio" name="q1choice"> c) 5`, 
-` <p>2. What is special about javascript arrays?</p>
+`<p>2. What is special about javascript arrays?</p>
 <input type="radio" name="q2choice"> a) It can contain any variable type
 <br/>
 <input type="radio" name="q2choice"> b) It can contain functions
