@@ -23,6 +23,6 @@ let home_btn = document.createElement("BUTTON");
 home_btn.innerHTML = "Home";
 home_btn.onclick = function(event){
     location.href="../../../../index.html";
-}
+};
 
 document.body.appendChild(home_btn);
