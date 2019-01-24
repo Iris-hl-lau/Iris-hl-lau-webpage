@@ -34,10 +34,10 @@ let questions = [`<p>1. What is the output of the following?</p> <br/>
 <input type="radio" name="q5choice"> c) A function inside a function, that relies on variables in the outside function to work`];
 
 while(quesNo > 5 || quesNo < 0) {
-    quesNo = window.prompt("How many questions would you like to answer? (Enter a number between 0 and 5.)" );
+    quesNo = window.prompt("How many questions would you like to answer? (Enter a number between 0 and 5.)");
 }
 
-for(let i = 0; i <= Number(quesNo)-1; i++) {
+for(let i = 0; i <= Number(quesNo) - 1; i++) {
     document.body.innerHTML += questions[i];
 }  
     

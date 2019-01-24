@@ -1,6 +1,6 @@
 for(let i = 0; i <= 25; i++) {
     let btn = document.createElement("BUTTON");
-    let text = String.fromCharCode(65+i);
+    let text = String.fromCharCode(65 + i);
     btn.className = "btn_style";
     btn.innerHTML = text;
     btn.onclick = function(event){
