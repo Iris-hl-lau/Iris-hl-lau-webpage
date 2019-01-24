@@ -1,9 +1,8 @@
 let quesNo = window.prompt("How many questions would you like to answer? (Enter a number between 0 and 5.)" );
 
-var questions = [`<p>1. What is the output of the following?</p> <br/>
+let questions = [`<p>1. What is the output of the following?</p> <br/>
 <p><span class="var">var</span> a = ["bob", 5, 3.14, 'c'];</p> 
 <p><span class="console">console</span>.log(a[n]);</p>
-
 <input type="radio" name="q1choice"> a) arrays can only contain elements of the same type
 <br/>
 <input type="radio" name="q1choice"> b) bob
@@ -38,13 +37,9 @@ while(quesNo > 5 || quesNo < 0) {
     quesNo = window.prompt("How many questions would you like to answer? (Enter a number between 0 and 5.)" );
 }
 
-
 for(let i = 0; i <= Number(quesNo)-1; i++) {
     document.body.innerHTML += questions[i];
 }  
-
-
-
     
 let linebreak = document.createElement("BR");
 document.body.appendChild(linebreak);
