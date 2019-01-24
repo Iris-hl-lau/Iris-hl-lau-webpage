@@ -6,3 +6,15 @@ body {
 #Iris_pic {
     width: 12%;
 }
+
+.btn_style {
+    width: 20pt;
+}
+
+.console{
+    color: turquoise;
+}
+
+.var {
+    color: blue;
+}
