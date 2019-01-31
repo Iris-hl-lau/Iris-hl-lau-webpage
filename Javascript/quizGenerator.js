@@ -1,3 +1,4 @@
+let qNo;
 let labelQNo = document.createElement("LABEL");
         labelQNo.innerHTML = "Enter the number of questions to create:&nbsp";
         labelQNo.htmlFor = "qNo";
@@ -13,7 +14,7 @@ let labelQNo = document.createElement("LABEL");
         qNoBtn.id = "btnOK";
         qNoBtn.onclick = function(event) {
             qNo = Number(document.getElementById("qNoInput").value);
-            generateQForm(qNo);
+            generateQForm();
         };
         qNoBtn.innerHTML = "OK";
         document.body.appendChild(qNoBtn);
@@ -54,11 +55,12 @@ let labelQNo = document.createElement("LABEL");
             document.body.appendChild(textInput);
         }
 
-        function generateQForm(questionNo) {
-            let form = document.createElement("FORM");
+        function generateQForm() {
+            if(qNo > 0) {
+                let form = document.createElement("FORM");
             linebreak();
 
-            for(let i = 0; i < questionNo; i++) {
+            for(let i = 0; i < qNo; i++) {
                 createLabel("Question Text*");
                 createTextArea(i);
                 createLabel("Answers*");
@@ -72,8 +74,9 @@ let labelQNo = document.createElement("LABEL");
             }
             btnSubmit();
             document.body.appendChild(form);
-            
+            }
         }
+
         function btnSubmit() {
             let btn_submit = document.createElement("INPUT");
             btn_submit.type = "submit";
@@ -83,10 +86,13 @@ let labelQNo = document.createElement("LABEL");
             document.body.appendChild(btn_submit);
         }
 
-        let form = new Array();
+        let quiz = {data : []};
+
+        //serializeObject protoype
         $.fn.serializeObject = function() {
-                var formInputs = {};
-                var item = $('form').serializeArray();
+                let formInputs = {};
+                let item = this.serializeArray();
+
                 $.each(item, function() {
                     if (formInputs[this.name] !== undefined) {
                         if (!formInputs[this.name].push) {
@@ -97,8 +103,7 @@ let labelQNo = document.createElement("LABEL");
                         formInputs[this.name] = this.value || '';
                     }
                 });
-                form.push(formInputs);
-                
+                quiz.data.push(formInputs);
             };
 
 
