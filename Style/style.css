@@ -18,3 +18,7 @@ body {
 .var {
     color: blue;
 }
+
+textarea {
+    resize: none;
+}
