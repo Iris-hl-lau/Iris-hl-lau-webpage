@@ -69,29 +69,18 @@ element.onclick = eventTwo;</pre>
 <br/>
 <input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
 element.addEventListener("click", eventTwo, false);</pre>`,
-`<br/><p>How to set a style attribute?</p>
+`<br/><p>9. How to set a style attribute?</p>
 <input type="radio" name="q9choice"> a) <pre>element.attribute.style("border", solid);</pre>
 <br/>
 <input type="radio" name="q9choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
 <br/>
-<input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`];
-
-
-// `<br/><p>9. How to set a style attribute?</p>
-// <input type="radio" name="q9choice"> a) 
-// <br/>
-// <input type="radio" name="q9choice"> b) 
-// <br/>
-// <input type="radio" name="q9choice"> c) `,
-// `<br/><p>10. What difference between break and continue?</p>
-// <input type="radio" name="q10choice"> a) break jumps out of the loop and continue skips the rest of the code below it to the next loop
-// <br/>
-// <input type="radio" name="q10choice"> b) break breaks the code and continue forces to code to continue
-// <br/>
-// <input type="radio" name="q10choice"> c) break pauses execution and continue ensures the code keeps running`
-
-
-
+<input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`,
+`<br/><p>10. What difference between break and continue?</p>
+<input type="radio" name="q10choice"> a) break jumps out of the loop and continue skips the rest of the code below it to the next loop
+<br/>
+<input type="radio" name="q10choice"> b) break breaks the code and continue forces to code to continue
+<br/>
+<input type="radio" name="q10choice"> c) break pauses execution and continue ensures the code keeps running`];
 
 for(let i = 0; i < questions.length; i++) {
     document.body.innerHTML += questions[i];
