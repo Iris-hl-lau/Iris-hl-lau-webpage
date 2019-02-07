@@ -64,6 +64,14 @@ let questions = [`<p>1. What is "this"?</p>
 
 
 
+
+
+
+
+
+
+
+
 // `<br/><p>7. When are query selectors more perferable than getElementById and getElementByClassName?</p>
 // <input type="radio" name="q7choice"> a) when we want to select more specifically
 // <br/>
