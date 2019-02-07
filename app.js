@@ -8,6 +8,6 @@ http.createServer(function(request, response) {
     response.write(curTime);
 	response.end();
 	}
-).listen(8080);
+).listen(8000);
 console.log('listening ... ');
 
