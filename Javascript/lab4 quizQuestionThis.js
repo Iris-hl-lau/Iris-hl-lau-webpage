@@ -48,7 +48,13 @@ let questions = [`<p>1. What is "this"?</p>
 <br/>
 <input type="radio" name="q5choice"> b) george
 <br/>
-<input type="radio" name="q5choice"> c) not defined`];
+<input type="radio" name="q5choice"> c) not defined`,
+`<br/><p>6. What is the difference between .querySelector() and .querySelectorAll()?</p>
+<input type="radio" name="q6choice"> a) .querySelector() selects the first matching element and .querySelectorAll() is a list of matching elements
+<br/>
+<input type="radio" name="q6choice"> b) .querySelector() selects an id and .querySelectorAll() selects classes
+<br/>
+<input type="radio" name="q6choice"> c) .querySelector() selects a condition and .querySelectorAll() selects condtions`];
 
 for(let i = 0; i < questions.length; i++) {
     document.body.innerHTML += questions[i];
