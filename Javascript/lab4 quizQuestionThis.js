@@ -68,13 +68,9 @@ element.onclick = eventTwo;</pre>
 <input type="radio" name="q8choice"> b) <pre>element.addEvents("click", eventOne, eventTwo, false);</pre>
 <br/>
 <input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
-element.addEventListener("click", eventTwo, false);</pre>`,
-`<br/><p>7. When are query selectors more perferable than getElementById and getElementByClassName?</p>
-<input type="radio" name="q9choice"> a) when we want to select more specifically
-<br/>
-<input type="radio" name="q9choice"> b) they do the same thing
-<br/>
-<input type="radio" name="q9choice"> c) when we want to select only queries`];
+element.addEventListener("click", eventTwo, false);</pre>`];
+
+
 
 
 
