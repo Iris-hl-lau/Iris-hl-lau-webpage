@@ -68,27 +68,21 @@ element.onclick = eventTwo;</pre>
 <input type="radio" name="q8choice"> b) <pre>element.addEvents("click", eventOne, eventTwo, false);</pre>
 <br/>
 <input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
-element.addEventListener("click", eventTwo, false);</pre>`];
+element.addEventListener("click", eventTwo, false);</pre>`,
+`<br/><p>How to set a style attribute?</p>
+<input type="radio" name="q9choice"> a) <pre>element.attribute.style("border", solid);</pre>
+<br/>
+<input type="radio" name="q9choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
+<br/>
+<input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`];
 
 
-
-
-
-
-// // `<br/><p>8. How to stack multiple events on one interation?</p>
-// {/* <input type="radio" name="q8choice"> a) <pre>element.onclick = eventOne;
-// element.onclick = eventTwo;</pre> */}
-// // <br/>
-// // <input type="radio" name="q8choice"> b) <pre>element.addEvents("click", eventOne, eventTwo, false);</pre>
-// // <br/>
-// {/* <input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
-// element.addEventListener("click", eventTwo, false);</pre>`, */}
 // `<br/><p>9. How to set a style attribute?</p>
-// <input type="radio" name="q9choice"> a) <pre>element.attribute.style("border", solid);</pre>
+// <input type="radio" name="q9choice"> a) 
 // <br/>
-// <input type="radio" name="q9choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
+// <input type="radio" name="q9choice"> b) 
 // <br/>
-// <input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`,
+// <input type="radio" name="q9choice"> c) `,
 // `<br/><p>10. What difference between break and continue?</p>
 // <input type="radio" name="q10choice"> a) break jumps out of the loop and continue skips the rest of the code below it to the next loop
 // <br/>
