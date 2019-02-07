@@ -4,8 +4,8 @@ let date = new Date();
 let port = process.env.PORT || 8080
 http.createServer((request, response) => {
 response.writeHead(200,{'Content-type': 'text/plain'});
-date.setUTCHours(date.getHours() - 8);
-response.end(String(date.toLocaleTimeString('en-US')));
+//date.setUTCHours(date.getHours() - 8);
+response.end(String(date.toLocaleTimeString('en-US', {timeZone: "America/Vancouver"})));
 }).listen(port,() => {
 console.log('listening...');
 });
