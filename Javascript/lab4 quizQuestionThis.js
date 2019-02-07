@@ -50,16 +50,36 @@ let questions = [`<p>1. What is "this"?</p>
 <br/>
 <input type="radio" name="q5choice"> c) not defined`,
 `<br/><p>6. What is the difference between .querySelector() and .querySelectorAll()?</p>
-<input type="radio" name="q3choice"> a) .querySelector() selects the first matching element and .querySelectorAll() is a list of matching elements
+<input type="radio" name="q6choice"> a) .querySelector() selects the first matching element and .querySelectorAll() is a list of matching elements
 <br/>
-<input type="radio" name="q3choice"> b) .querySelector() selects an id and .querySelectorAll() selects classes
+<input type="radio" name="q6choice"> b) .querySelector() selects an id and .querySelectorAll() selects classes
 <br/>
-<input type="radio" name="q3choice"> c) .querySelector() selects a condition and .querySelectorAll() selects condtions`];
+<input type="radio" name="q6choice"> c) .querySelector() selects a condition and .querySelectorAll() selects condtions`,
+`<br/><p>7. When are query selectors more perferable than getElementById and getElementByClassName?</p>
+<input type="radio" name="q7choice"> a) when we want to select more specifically
+<br/>
+<input type="radio" name="q7choice"> b) they do the same thing
+<br/>
+<input type="radio" name="q7choice"> c) when we want to select only queries`,
+`<br/><p>8. How to stack multiple events on one interation?</p>
+<input type="radio" name="q8choice"> a) <pre>element.onclick = eventOne;
+element.onclick = eventTwo;</pre>
+<br/>
+<input type="radio" name="q8choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
+<br/>
+<input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
+element.addEventListener("click", eventTwo, false);</pre>`,
+`<br/><p>9. How to set a style attribute?</p>
+<input type="radio" name="q9choice"> a) <pre>element.attribute.style("border", solid);</pre>
+<br/>
+<input type="radio" name="q9choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
+<br/>
+<input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`];
 
 
 
 // `<br/><p>7. When are query selectors more perferable than getElementById and getElementByClassName?</p>
-// <input type="radio" name="q7choice"> a) when we want tp select more specifically
+// <input type="radio" name="q7choice"> a) when we want to select more specifically
 // <br/>
 // <input type="radio" name="q7choice"> b) they do the same thing
 // <br/>
