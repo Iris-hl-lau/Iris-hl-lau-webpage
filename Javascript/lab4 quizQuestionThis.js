@@ -60,21 +60,7 @@ let questions = [`<p>1. What is "this"?</p>
 <br/>
 <input type="radio" name="q7choice"> b) they do the same thing
 <br/>
-<input type="radio" name="q7choice"> c) when we want to select only queries`,
-`<br/><p>8. How to stack multiple events on one interation?</p>
-<input type="radio" name="q8choice"> a) <pre>element.onclick = eventOne;
-element.onclick = eventTwo;</pre>
-<br/>
-<input type="radio" name="q8choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
-<br/>
-<input type="radio" name="q8choice"> c) <pre>element.addEventListener("click", eventOne, false);
-element.addEventListener("click", eventTwo, false);</pre>`,
-`<br/><p>9. How to set a style attribute?</p>
-<input type="radio" name="q9choice"> a) <pre>element.attribute.style("border", solid);</pre>
-<br/>
-<input type="radio" name="q9choice"> b) <pre>document.querySelector(".class p").style.border = "solid";</pre>
-<br/>
-<input type="radio" name="q9choice"> c) <pre>document.querySelector(".class p").attribute(style="border: solid;");</pre>`];
+<input type="radio" name="q7choice"> c) when we want to select only queries`];
 
 
 
