@@ -19,71 +19,83 @@ let labelQNo = document.createElement("LABEL");
         qNoBtn.innerHTML = "OK";
         document.body.appendChild(qNoBtn);
         
-        function createLabel(labelName, i) {
-            linebreak();
-            linebreak();
+        function createLabel(labelName, i, loc) {
+            linebreak(loc);
+            linebreak(loc);
             let label = document.createElement("LABEL");
             label.innerHTML = labelName;
             label.htmlFor = String(labelName + i);
-            document.body.appendChild(label);
-            linebreak();
+            loc.appendChild(label);
+            linebreak(loc);
         }
         
-        function createTextArea(num) {
+        function createTextArea(num, loc) {
             let textbox = document.createElement("TEXTAREA");
             textbox.rows = 2;
             textbox.cols = 50;
             textbox.name = String("Question" + num);
-            document.body.appendChild(textbox);
+            loc.appendChild(textbox);
         }
 
-        function linebreak() {
-            document.body.appendChild(document.createElement("BR"));
+        function linebreak(loc) {
+            loc.appendChild(document.createElement("BR"));
         }
 
-        function createRadioBtn(num) {
+        function createRadioBtn(num, loc) {
             let radioBtn = document.createElement("INPUT");
             radioBtn.type = "radio";
+            radioBtn.className = "radiobtn";
             radioBtn.name = String("multipleChoiceRadio" + num);
-            document.body.appendChild(radioBtn);
+            loc.appendChild(radioBtn);
         }
 
-        function createTextInput(num) {
+        function createTextInput(num , loc) {
             let textInput = document.createElement("INPUT");
             textInput.type = "text";
             textInput.name = String("multipleChoice" + num);
-            document.body.appendChild(textInput);
+            loc.appendChild(textInput);
         }
 
         function generateQForm() {
             if(qNo > 0) {
                 let form = document.createElement("FORM");
-            linebreak();
+                form.id = "quizForm";
+                document.body.appendChild(form);
+            linebreak(form);
 
             for(let i = 0; i < qNo; i++) {
-                createLabel("Question Text*");
-                createTextArea(i);
-                createLabel("Answers*");
+                createLabel("Question Text*", i, form);
+                createTextArea(i, form);
+                createLabel("Answers*", i, form);
 
                 for(let j = 0; j <= 3; j++) {
-                    createRadioBtn(i);
-                    createTextInput(j);
-                    linebreak();
+                    createRadioBtn(i, form);
+                    createTextInput(j, form);
+                    linebreak(form);
                 }
-                linebreak();
+                linebreak(form);
             }
-            btnSubmit();
-            document.body.appendChild(form);
+            let radioBtnSelector = document.getElementsByClassName("radiobtn");   
+            for(let k = 0; k < radioBtnSelector.length; k++) {
+                if(k % 4 == 0) {
+                    radioBtnSelector[k].checked = true;
+                }
+
+            }
+
+            btnSubmit(form);
+            
             }
         }
 
-        function btnSubmit() {
+        function btnSubmit(loc) {
             let btn_submit = document.createElement("INPUT");
             btn_submit.type = "submit";
             btn_submit.onclick = function(event) {
+                event.preventDefault();
                 storeQuiz();
             };
-            document.body.appendChild(btn_submit);
+            loc.appendChild(btn_submit);
         }
 
         let quiz = {data : []};
@@ -91,32 +103,26 @@ let labelQNo = document.createElement("LABEL");
         //serializeObject protoype
         $.fn.serializeObject = function() {
                 let formInputs = {};
-                let item = this.serializeArray();
-
+                let item = $('#quizForm').serializeArray();
+                // console.log(item);
                 $.each(item, function() {
-                    if (formInputs[this.name] !== undefined) {
-                        if (!formInputs[this.name].push) {
-                            formInputs[this.name] = [formInputs[this.name]];
+                    if (formInputs[$('#quizForm').name] !== undefined) {
+                        if (!formInputs[$('#quizForm').name].push) {
+                            formInputs[$('#quizForm').name] = [formInputs[$('#quizForm').name]];
                         }
-                        formInputs[this.name].push(this.value || '');
+                        formInputs[$('#quizForm').name].push($('#quizForm').value || '');
                     } else {
-                        formInputs[this.name] = this.value || '';
+                        formInputs[$('#quizForm').name] = $('#quizForm').value || '';
                     }
+                    
                 });
                 quiz.data.push(formInputs);
+                
             };
 
-
         function storeQuiz() {
-            // const quiz = document.getElementsByClassName("Form");
-            console.log(JSON.stringify($('form').serializeObject()));
-            // $(function() {
-            //     $('form').submit(function() {
-            //         $('#result').text(JSON.stringify($('form').serializeObject()));
-                   
-            //         return false;
-            //     });
-            // });
+            JSON.stringify($('#quizForm').serializeObject());
+            console.log(quiz.data);
         }
 
         // function retrieveQuiz() {
