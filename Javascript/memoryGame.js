@@ -5,10 +5,10 @@ let oldScore = 0;
 let correctCount = 0;
 let grid_row = MIN;
 let grid_col = MIN;
+let tiles = MIN;
 let terminate = false;
 let correct = true;
 let pattern = [];
-let tiles = MIN;
 
 function generateInfoBar() {
     let info = document.createElement("DIV");
@@ -16,7 +16,7 @@ function generateInfoBar() {
     document.body.appendChild(info);
 
     let tileNo = document.createElement("PRE");
-    tileNo.innerHTML = "TILES   " + grid_col + "        SCORE   " + score + "   ";
+    tileNo.innerHTML = "TILES&nbsp" + grid_col + "\t\tSCORE&nbsp" + score + "\t\t";
     tileNo.id = "tileNo";
     info.appendChild(tileNo);
 
@@ -30,7 +30,7 @@ function generateInfoBar() {
 
 function updateInfoBar() {
     let tileNo = document.getElementById("tileNo");
-    tileNo.innerHTML = "TILES   " + tiles + "        SCORE   " + score + "   ";
+    tileNo.innerHTML = "TILES&nbsp" + tiles + "\t\tSCORE&nbsp" + score + "\t\t";
 }
 
 function generateGrid() {
@@ -55,45 +55,57 @@ function generateGrid() {
             
             if(correct) {
                 score++;
+                correctCount++;
+                console.log(correctCount);
                 updateInfoBar();
-                if(score - oldScore == tiles) {
+                if(correctCount == tiles) {
                     tiles++;
+                    correctCount = 0;
                     updateInfoBar();
+
                     if(tiles % 2 == 0) {
                         grid_row++;
                     } else {
                         grid_col++;
                     }
-                    updateGrid();
                     generatePattern();
+                    updateGrid();
+                    setTimeout(displayPattern(), 4000);
                 }
-            } else {
-                score--;
-                updateInfoBar();
-                generatePattern();
             }
         });
     }
 }
 
 function generatePattern() {
+    pattern = [];
     for(let i = 0; i < tiles; i++) {
             let num = Math.floor(Math.random() * grid_row * grid_col);
-            for(let j = 0; j < i; j++) {
-                while(num == pattern[j]) {
+            for(let j = 0; j <= i; j++) {
+                if(num == pattern[j]) {
                     num = Math.floor(Math.random() * grid_row * grid_col);
+                    j = 0;
                 }
             }
-
             pattern[i] = num;
-            console.log(num);
-            let griditem = document.querySelectorAll(".grid_item");
-            setTimeout(function(){ griditem[pattern[i]].classList.toggle('is-flipped'); }, 1000);
-            setTimeout(function(){ griditem[pattern[i]].classList.toggle('is-flipped'); }, 4000);
+    }
+    console.log(pattern);
+}
+
+function displayPattern() {
+    let grid_item = document.querySelectorAll(".grid_item");
+    for(let i = 0; i < grid_item.length; i++) {
+        if(grid_item[i].classList.contains('is-flipped')) {
+            grid_item[i].classList.toggle('is-flipped');
+        }
     }
 
+    for(let i = 0; i < pattern.length; i++) {
+        setTimeout(function(){ grid_item[pattern[i]].classList.toggle('is-flipped'); }, 1000);
+        setTimeout(function(){ grid_item[pattern[i]].classList.toggle('is-flipped'); }, 4000);
+    }
     let grid_container = document.querySelector(".grid_container");
-    setTimeout(function(){ grid_container.classList.toggle('animate'); }, 6000);
+    setTimeout(function(){ grid_container.classList.toggle('animate'); }, 6000);        
 }
 
 function checkTile(grid) {
@@ -113,17 +125,38 @@ function updateGrid() {
     grid_container.style["grid-template-columns"] = "repeat(" + grid_col + "," + 100 / grid_col + "%)";
     grid_container.style["grid-template-rows"] = "repeat(" + grid_row + "," + 100 / grid_row + "%)";
 
-    // while(grid_container.firstChild) {
-    //     grid_container.remove(grid_container.firstChild);
-    // }
+    
 
-    if(grid_row * grid_col > griditem.length) {
+    if(grid_row * grid_col > griditem.length) { 
+        console.log("more tiles");
         for(let i = griditem.length; i < grid_row * grid_col; i++) {
             let grid_item = document.createElement("DIV");
             grid_item.className = "grid_item";
             grid_item.id = String(i);
             grid_item.addEventListener("click", function(event) {
                 grid_item.classList.toggle('is-flipped');
+                correct = checkTile(this);
+            
+                if(correct) {
+                    score++;
+                    correctCount++;
+                    console.log(correctCount);
+                    updateInfoBar();
+                    if(correctCount == tiles) {
+                        tiles++;
+                        correctCount = 0;
+                        updateInfoBar();
+
+                        if(tiles % 2 == 0) {
+                            grid_row++;
+                        } else {
+                            grid_col++;
+                        }
+                        generatePattern();
+                        updateGrid();
+                        setTimeout(displayPattern(), 4000);
+                    }
+                }
             });
             grid_container.appendChild(grid_item);
         }
@@ -135,8 +168,9 @@ function updateGrid() {
         //     });
         // }
     } else if(grid_row * grid_col < griditem.length) {
+        console.log("less tiles");
         for(let i = griditem.length; i > grid_row * grid_col; i--) {
-            grid_container.removeChild(grid_container.firstChild);
+            grid_container.removeChild(grid_container.lastChild);
         }
     }
 }
@@ -144,6 +178,7 @@ function updateGrid() {
 generateInfoBar();
 generateGrid();
 generatePattern();
+displayPattern();
 
 // while(!terminate) {
 //     while(correct) {
