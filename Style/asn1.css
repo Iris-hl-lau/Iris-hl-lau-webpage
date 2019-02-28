@@ -1,0 +1,42 @@
+.info {
+    text-align: right;
+}
+
+.grid_container {
+    display: grid;
+    background-color: darkslategray;
+    padding: 2vmin;
+    width: 60vmin;
+    height: 60vmin;
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -30vmin;
+    margin-left: -30vmin;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
+}
+
+.grid_container.animate {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+
+.grid_item {
+    background-color: aquamarine;
+    border: 1px solid darkslategray;
+    padding: 20%;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
+}
+
+.grid_item:hover {
+    background-color: #00ffaa;
+}
+
+.grid_item.is-flipped {
+    background-color: #ffc0cb;
+    transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+}
+
