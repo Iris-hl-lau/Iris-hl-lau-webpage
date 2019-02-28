@@ -50,10 +50,11 @@ function generateGrid() {
     let griditem = document.querySelectorAll(".grid_item");
     for(let i = 0; i < griditem.length; i++) {
         griditem[i].addEventListener("click", function(event) {
-            griditem[i].classList.toggle('is-flipped');
+            
             correct = checkTile(this);
             
             if(correct) {
+                setTimeout(griditem[i].classList.toggle('is-flipped'), 0);
                 score++;
                 correctCount++;
                 console.log(correctCount);
@@ -72,6 +73,21 @@ function generateGrid() {
                     updateGrid();
                     setTimeout(displayPattern(), 4000);
                 }
+            } else {
+                griditem[i].classList.toggle('wrong-flip');
+                score--;
+                tiles--;
+                correctCount = 0;
+                updateInfoBar();
+
+                if(tiles % 2 != 0) {
+                    grid_row--;
+                } else {
+                    grid_col--;
+                }
+                generatePattern();
+                setTimeout(updateGrid(), 1000);
+                setTimeout(displayPattern(), 4000);
             }
         });
     }
@@ -82,9 +98,9 @@ function generatePattern() {
     for(let i = 0; i < tiles; i++) {
             let num = Math.floor(Math.random() * grid_row * grid_col);
             for(let j = 0; j <= i; j++) {
-                if(num == pattern[j]) {
+                if(pattern[j] == num) {
                     num = Math.floor(Math.random() * grid_row * grid_col);
-                    j = 0;
+                    j = -1;
                 }
             }
             pattern[i] = num;
@@ -96,16 +112,18 @@ function displayPattern() {
     let grid_item = document.querySelectorAll(".grid_item");
     for(let i = 0; i < grid_item.length; i++) {
         if(grid_item[i].classList.contains('is-flipped')) {
-            grid_item[i].classList.toggle('is-flipped');
+            setTimeout(grid_item[i].classList.toggle('is-flipped'), 2000);
+        } else if(grid_item[i].classList.contains('wrong-flip')) {
+            setTimeout(grid_item[i].classList.toggle('wrong-flip'), 2000);
         }
     }
 
     for(let i = 0; i < pattern.length; i++) {
         setTimeout(function(){ grid_item[pattern[i]].classList.toggle('is-flipped'); }, 1000);
-        setTimeout(function(){ grid_item[pattern[i]].classList.toggle('is-flipped'); }, 4000);
+        setTimeout(function(){ grid_item[pattern[i]].classList.toggle('is-flipped'); }, 6000);
     }
     let grid_container = document.querySelector(".grid_container");
-    setTimeout(function(){ grid_container.classList.toggle('animate'); }, 6000);        
+    setTimeout(function(){ grid_container.classList.toggle('animate'); }, 8000);        
 }
 
 function checkTile(grid) {
@@ -134,10 +152,10 @@ function updateGrid() {
             grid_item.className = "grid_item";
             grid_item.id = String(i);
             grid_item.addEventListener("click", function(event) {
-                grid_item.classList.toggle('is-flipped');
                 correct = checkTile(this);
             
                 if(correct) {
+                    grid_item.classList.toggle('is-flipped');
                     score++;
                     correctCount++;
                     console.log(correctCount);
@@ -156,17 +174,25 @@ function updateGrid() {
                         updateGrid();
                         setTimeout(displayPattern(), 4000);
                     }
+                } else {
+                    grid_item.classList.toggle('wrong-flip');
+                    score--;
+                    tiles--;
+                    correctCount = 0;
+                    updateInfoBar();
+    
+                    if(tiles % 2 != 0) {
+                        grid_row--;
+                    } else {
+                        grid_col--;
+                    }
+                    generatePattern();
+                    updateGrid(), 1000;
+                    setTimeout(displayPattern(), 4000);
                 }
             });
             grid_container.appendChild(grid_item);
         }
-        
-        // let griditem = document.querySelectorAll(".grid_item");
-        // for(let i = 0; i < griditem.length; i++) {
-        //     griditem.addEventListener("click", function(event) {
-        //         griditem.classList.toggle('is-flipped');
-        //     });
-        // }
     } else if(grid_row * grid_col < griditem.length) {
         console.log("less tiles");
         for(let i = griditem.length; i > grid_row * grid_col; i--) {
@@ -180,16 +206,6 @@ generateGrid();
 generatePattern();
 displayPattern();
 
-// while(!terminate) {
-//     while(correct) {
-//         updateInfoBar();
-//         updateGrid();
-//     }
-
-//     if(score < 0) {
-//         terminate = true;
-//     }
-// }
 
 
 
