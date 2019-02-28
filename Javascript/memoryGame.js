@@ -187,7 +187,7 @@ function updateGrid() {
                         grid_col--;
                     }
                     generatePattern();
-                    updateGrid(), 1000;
+                    updateGrid();
                     setTimeout(displayPattern(), 4000);
                 }
             });
