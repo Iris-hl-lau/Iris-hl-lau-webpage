@@ -79,6 +79,8 @@ let labelQNo = document.createElement("LABEL");
             for(let k = 0; k < radioBtnSelector.length; k++) {
                 if(k % 4 == 0) {
                     radioBtnSelector[k].checked = true;
+                } else {
+                    radioBtnSelector[k].checked = false;
                 }
 
             }
@@ -90,41 +92,28 @@ let labelQNo = document.createElement("LABEL");
 
         function btnSubmit(loc) {
             let btn_submit = document.createElement("INPUT");
-            btn_submit.type = "submit";
+            btn_submit.type = "Submit";
             btn_submit.onclick = function(event) {
                 event.preventDefault();
                 storeQuiz();
+                document.location.href = "user.html", true;
             };
             loc.appendChild(btn_submit);
         }
-
-        let quiz = {data : []};
-
-        //serializeObject protoype
-        $.fn.serializeObject = function() {
-                let formInputs = {};
-                let item = $('#quizForm').serializeArray();
-                // console.log(item);
-                $.each(item, function() {
-                    if (formInputs[$('#quizForm').name] !== undefined) {
-                        if (!formInputs[$('#quizForm').name].push) {
-                            formInputs[$('#quizForm').name] = [formInputs[$('#quizForm').name]];
-                        }
-                        formInputs[$('#quizForm').name].push($('#quizForm').value || '');
-                    } else {
-                        formInputs[$('#quizForm').name] = $('#quizForm').value || '';
-                    }
-                    
-                });
-                quiz.data.push(formInputs);
-                
-            };
-
+        
         function storeQuiz() {
-            JSON.stringify($('#quizForm').serializeObject());
-            console.log(quiz.data);
+            let quiz = [];
+            quiz = $('#quizForm').serializeArray();
+            localStorage.setItem("quiz", JSON.stringify(quiz));
+
+            let answers = [];
+            let rdobtn = document.querySelectorAll(".radiobtn");
+            for(let i = 0; i < rdobtn.length; i++) {
+                if(rdobtn[i].checked) {
+                    answers.push(i);
+                }
+            }
+
+            localStorage.setItem("answers", JSON.stringify(answers));
+            console.log(quiz);
         }
-
-        // function retrieveQuiz() {
-
-        // }

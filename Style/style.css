@@ -23,3 +23,8 @@ body, pre {
 textarea {
     resize: none;
 }
+
+.choiceList {
+    list-style-type: none;
+    padding: 0%;
+}
