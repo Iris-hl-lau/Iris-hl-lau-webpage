@@ -10,7 +10,7 @@ gapi.client.load('youtube', 'v3', function() {
 });
 
 function request() {
-  let q = document.querySelector('#searchVid').val();
+  let q = document.querySelector('#searchVid').value;
   let req = gapi.client.youtube.search.list({
     q: q,
     part: 'snippet',
